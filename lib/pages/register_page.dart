@@ -1,5 +1,5 @@
-import 'package:feastease/my_button.dart';
-import 'package:feastease/my_text_field.dart';
+import 'package:feastease/components/my_button.dart';
+import 'package:feastease/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,7 +14,8 @@ class _LoginPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
-
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +56,7 @@ class _LoginPageState extends State<RegisterPage> {
                 height: 15,
               ),
               MyTextfield(
-                  controller: passwordController,
+                  controller: confirmpasswordController,
                   hintText: "Confirm Password",
                   obscureText: true),
               const SizedBox(

@@ -1,5 +1,6 @@
-import 'package:feastease/my_button.dart';
-import 'package:feastease/my_text_field.dart';
+import 'package:feastease/components/my_button.dart';
+import 'package:feastease/components/my_text_field.dart';
+import 'package:feastease/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,16 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
+
+  void login() {
+    // fill out authentication here
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +47,9 @@ class _LoginPageState extends State<LoginPage> {
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
+
 // usernames
+
               const SizedBox(
                 height: 25,
               ),
@@ -55,7 +68,11 @@ class _LoginPageState extends State<LoginPage> {
                 height: 10,
               ),
               MyButton(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    login();
+                  });
+                },
                 text: "Sign In",
               ),
               const SizedBox(
