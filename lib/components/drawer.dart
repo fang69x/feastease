@@ -1,4 +1,5 @@
 import 'package:feastease/components/my_drawer_tile.dart';
+import 'package:feastease/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -34,7 +35,14 @@ class MyDrawer extends StatelessWidget {
           MyDrawerTile(
             text: "S E T T I N G S",
             icon: Icons.settings,
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsPage(),
+                  ));
+            },
           ),
           const Spacer(),
           MyDrawerTile(text: "L O G O U T", icon: Icons.logout, onTap: () {}),
