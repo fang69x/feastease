@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "286197171680",
+    "project_id": "feastease",
+    "storage_bucket": "feastease.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286197171680:android:c46d7fe3d4389b5f99d785",
+        "android_client_info": {
+          "package_name": "com.example.feastease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286197171680-9o55jjvf05kcr8vorntjuv8mc8jhtg5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQyC-yzzC4QO6MiKuHxZlQ864Hv80Ohig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286197171680-9o55jjvf05kcr8vorntjuv8mc8jhtg5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,17 +9,23 @@ class FoodTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Use the theme's surface color for the background
+    final theme = Theme.of(context);
+    final surfaceColor = theme.colorScheme.surface;
+    final primaryTextColor = theme.colorScheme.inversePrimary;
+    final secondaryTextColor = theme.colorScheme.primary;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: surfaceColor,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.black.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
               offset: Offset(0, 3), // changes position of shadow
@@ -35,17 +41,26 @@ class FoodTile extends StatelessWidget {
                 children: [
                   Text(
                     food.name,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: primaryTextColor,
+                    ),
                   ),
                   SizedBox(height: 5),
                   Text(
                     '\$${food.price.toStringAsFixed(2)}',
-                    style: TextStyle(color: Colors.green, fontSize: 16),
+                    style: TextStyle(
+                      color: secondaryTextColor,
+                      fontSize: 16,
+                    ),
                   ),
                   SizedBox(height: 5),
                   Text(
                     food.description,
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -1,14 +1,35 @@
 import 'package:feastease/components/my_drawer_tile.dart';
+import 'package:feastease/pages/LoginPage.dart';
 import 'package:feastease/pages/setting_page.dart';
+import 'package:feastease/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
+  Future<void> logOut(BuildContext context) async {
+    final authService = AuthService();
+    try {
+      await authService.signOut();
+      // Navigate to the login page
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LoginPage(
+                  onTap: () {},
+                )), // Replace with your actual login page
+        (Route<dynamic> route) => false, // Removes all routes from the stack
+      );
+    } catch (e) {
+      // Handle errors (e.g., show an error message)
+      print('Logout failed: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           Padding(
@@ -20,7 +41,7 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(25.0),
             child: Divider(
               color: Theme.of(context).colorScheme.secondary,
             ),
@@ -38,14 +59,21 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SettingsPage(),
-                  ));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
             },
           ),
           const Spacer(),
-          MyDrawerTile(text: "L O G O U T", icon: Icons.logout, onTap: () {}),
+          MyDrawerTile(
+            text: "L O G O U T",
+            icon: Icons.logout,
+            onTap: () {
+              logOut(context);
+            },
+          ),
           const SizedBox(
             height: 25,
           ),

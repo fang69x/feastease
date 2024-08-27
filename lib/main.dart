@@ -1,11 +1,15 @@
 import 'package:feastease/Model/Restaurant.dart';
-import 'package:feastease/auth/login_or_register.dart';
+import 'package:feastease/services/auth/login_or_register.dart';
+import 'package:feastease/firebase_options.dart';
+import 'package:feastease/services/auth_gate.dart';
 import 'package:feastease/themes/theme_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MultiProvider(
     providers: [
       //theme provider
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginOrRegister(),
+      home: const AuthGate(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
