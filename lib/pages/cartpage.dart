@@ -23,28 +23,32 @@ class CartPage extends StatelessWidget {
             actions: [
               //CLEAR CART BUTTON
               IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: Text(
-                                  'Are you sure you want to clear the cart ?'),
-                              actions: [
-                                //cancel button
-                                TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text("Cancel")),
-
-                                // yes button
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text("Yes")),
-                              ],
-                            ));
-                  },
-                  icon: const Icon(Icons.delete))
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Are you sure you want to clear the cart?'),
+                      actions: [
+                        // Cancel button
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Cancel"),
+                        ),
+                        // Yes button
+                        TextButton(
+                          onPressed: () {
+                            // Calling the clearCart method
+                            restaurant.clearCart();
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Yes"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.delete),
+              )
             ],
           ),
           body: Expanded(
