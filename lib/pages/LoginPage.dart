@@ -62,20 +62,9 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Incorrect Email',
-              style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-          content: Text('No user found with that email address.',
-              style:
-                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary)),
-            ),
-          ],
+        return const AlertDialog(
+          title: Text('Incorrect Email'),
+          content: Text('No user found with that email address.'),
         );
       },
     );
@@ -85,20 +74,9 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Incorrect Password',
-              style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-          content: Text('The password you entered is incorrect.',
-              style:
-                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary)),
-            ),
-          ],
+        return const AlertDialog(
+          title: Text('Incorrect Password'),
+          content: Text('The password you entered is incorrect.'),
         );
       },
     );
@@ -109,19 +87,8 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Error',
-              style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-          content: Text(message ?? 'An unknown error occurred.',
-              style:
-                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.primary)),
-            ),
-          ],
+          title: const Text('Error'),
+          content: Text(message ?? 'An unknown error occurred.'),
         );
       },
     );
@@ -129,12 +96,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void showNotification() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        content: Text(
-          'Registration Successful! Please log in',
-          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-        ),
+      const SnackBar(
+        content: Text('Registration Successful! Please log in'),
       ),
     );
   }
@@ -191,29 +154,22 @@ class _LoginPageState extends State<LoginPage> {
 
   SnackBar customSnackBar({required String content}) {
     return SnackBar(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Colors.black,
       content: Text(
         content,
-        style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary, letterSpacing: 0.5),
+        style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      appBar: AppBar(
-        title:
-            Text('Login', style: TextStyle(color: theme.colorScheme.onPrimary)),
-        backgroundColor: theme.colorScheme.primary,
-      ),
+      backgroundColor:
+          const Color.fromARGB(255, 210, 209, 209), // Old background color
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -224,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                     Icon(
                       Icons.lock_open_rounded,
                       size: 100,
-                      color: theme.colorScheme.primary,
+                      color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -232,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.primary,
+                        color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     ),
                   ],
@@ -240,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 25),
                 MyTextField(
                   controller: emailController,
-                  hintText: "Email",
+                  hintText: "Username",
                   obscureText: false,
                 ),
                 const SizedBox(height: 25),
@@ -250,15 +206,16 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
                         "Forgot Password?",
-                        style: TextStyle(color: theme.colorScheme.secondary),
-                      ),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 88, 88, 88)),
+                      )
                     ],
                   ),
                 ),
@@ -272,23 +229,23 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: theme.colorScheme.onBackground,
+                          color: Color.fromARGB(255, 146, 143, 143),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           "Or continue with",
-                          style: TextStyle(color: theme.colorScheme.secondary),
+                          style: TextStyle(color: Colors.grey[700]),
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: theme.colorScheme.onBackground,
+                          color: Color.fromARGB(255, 146, 143, 143),
                         ),
                       ),
                     ],
@@ -317,7 +274,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       "Not a member?",
-                      style: TextStyle(color: theme.colorScheme.secondary),
+                      style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
@@ -334,10 +291,10 @@ class _LoginPageState extends State<LoginPage> {
                           showNotification();
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         "Register now",
                         style: TextStyle(
-                          color: theme.colorScheme.primary,
+                          color: Color.fromARGB(255, 48, 48, 48),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
