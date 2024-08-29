@@ -10,7 +10,6 @@ import 'package:feastease/components/my_silver_app_bar.dart';
 import 'package:feastease/components/my_tab_bar.dart';
 import 'package:feastease/pages/food_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,18 +48,20 @@ class _HomePageState extends State<HomePage>
 
       return ListView.builder(
         itemCount: categoryMenu.length,
-        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
           final food = categoryMenu[index];
           return FoodTile(
-              food: food,
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FoodPage(
-                            food: food,
-                          ))));
+            food: food,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FoodPage(
+                  food: food,
+                ),
+              ),
+            ),
+          );
         },
       );
     }).toList();
@@ -68,6 +69,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       drawer: MyDrawer(),
       body: NestedScrollView(
@@ -80,11 +82,11 @@ class _HomePageState extends State<HomePage>
                 Divider(
                   indent: 25,
                   endIndent: 25,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: theme.colorScheme.secondary,
                 ),
                 // My current location
                 MyCurrentLocation(),
-
+                const SizedBox(height: 10), // Add spacing
                 // Description box
                 MyDescriptionBox(),
               ],
@@ -98,6 +100,41 @@ class _HomePageState extends State<HomePage>
               children: getFoodInThisCategory(restaurant.menu),
             );
           },
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.secondary,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: BottomAppBar(
+          color: theme.colorScheme.secondary,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                icon: Icon(Icons.home, color: theme.colorScheme.onSecondary),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.search, color: theme.colorScheme.onSecondary),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.shopping_cart,
+                    color: theme.colorScheme.onSecondary),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.account_circle,
+                    color: theme.colorScheme.onSecondary),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );

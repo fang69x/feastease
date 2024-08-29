@@ -1,22 +1,57 @@
+import 'package:feastease/Model/Restaurant.dart';
 import 'package:feastease/components/my_receipt.dart';
+import 'package:feastease/services/database/firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class DeliveryProgressPage extends StatelessWidget {
+class DeliveryProgressPage extends StatefulWidget {
   const DeliveryProgressPage({super.key});
+
+  @override
+  State<DeliveryProgressPage> createState() => _DeliveryProgressPageState();
+}
+
+class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
+  @override
+  FirestoreService db = FirestoreService();
+
+  void initState() {
+    super.initState();
+    // Submit order to Firestore DB
+    String receipt = context.read<Restaurant>().displayCardReceipt();
+    db.saveOrderToDatabase(receipt);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Delivery In Progress"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: const Text("Delivery In Progress"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.tertiary,
+        elevation: 4,
+        shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
       ),
       bottomNavigationBar: _buildBottomNavbar(context),
-      body: Column(
-        children: [
-          Myreceipt(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 16),
+            Text(
+              "Your order is on the way!",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+                child: Myreceipt()), // Ensure the component name is correct
+          ],
+        ),
       ),
     );
   }
@@ -27,13 +62,20 @@ Widget _buildBottomNavbar(BuildContext context) {
   return Container(
     height: 80,
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.secondary,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40),
-        topRight: Radius.circular(40),
+      gradient: LinearGradient(
+        colors: [
+          Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+          Theme.of(context).colorScheme.secondary,
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
       ),
     ),
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     child: Row(
       children: [
         // Profile picture area
@@ -44,15 +86,15 @@ Widget _buildBottomNavbar(BuildContext context) {
           ),
           child: IconButton(
             onPressed: () {},
-            icon: Icon(Icons.person),
-            iconSize: 30,
-            constraints: BoxConstraints(
-              minWidth: 50,
-              minHeight: 50,
+            icon: const Icon(Icons.person),
+            iconSize: 32,
+            constraints: const BoxConstraints(
+              minWidth: 55,
+              minHeight: 55,
             ),
           ),
         ),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         // Driver details
         Flexible(
           child: Column(
@@ -63,7 +105,7 @@ Widget _buildBottomNavbar(BuildContext context) {
                 "Kislay",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 20,
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
@@ -80,7 +122,7 @@ Widget _buildBottomNavbar(BuildContext context) {
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
         // Action buttons
         Row(
           children: [
@@ -92,16 +134,16 @@ Widget _buildBottomNavbar(BuildContext context) {
               ),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.message),
+                icon: const Icon(Icons.message),
                 color: Theme.of(context).colorScheme.primary,
-                iconSize: 24,
-                constraints: BoxConstraints(
-                  minWidth: 45,
-                  minHeight: 45,
+                iconSize: 26,
+                constraints: const BoxConstraints(
+                  minWidth: 50,
+                  minHeight: 50,
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 12),
             // Call button
             Container(
               decoration: BoxDecoration(
@@ -110,12 +152,12 @@ Widget _buildBottomNavbar(BuildContext context) {
               ),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.call),
+                icon: const Icon(Icons.call),
                 color: Colors.green,
-                iconSize: 24,
-                constraints: BoxConstraints(
-                  minWidth: 45,
-                  minHeight: 45,
+                iconSize: 26,
+                constraints: const BoxConstraints(
+                  minWidth: 50,
+                  minHeight: 50,
                 ),
               ),
             ),

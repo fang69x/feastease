@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
+  String _deliveryAddress = '99 Hollywood Blv';
   final List<Food> _menu = [
     // burgers
     Food(
@@ -308,7 +309,9 @@ class Restaurant extends ChangeNotifier {
   //getters
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get deliveryAddress => _deliveryAddress;
 //OPERATIONS
+
 //user cart
   final List<CartItem> _cart = [];
 //add to cart
@@ -371,6 +374,12 @@ class Restaurant extends ChangeNotifier {
 //clear cart
   void clearCart() {
     _cart.clear();
+    notifyListeners();
+  }
+
+  //update the delivery address
+  void updateDeliveryAddress(String newAddress) {
+    _deliveryAddress = newAddress; // Directly update the class field
     notifyListeners();
   }
 //HELPERS

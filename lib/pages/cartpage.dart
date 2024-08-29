@@ -12,32 +12,28 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Restaurant>(
       builder: (context, restaurant, child) {
-//cart
         final userCart = restaurant.cart;
-        //scaffold UI
+
         return Scaffold(
           appBar: AppBar(
-            title: Text("Cart"),
-            backgroundColor: Colors.transparent,
-            foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: const Text("Cart"),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.tertiary,
             actions: [
-              //CLEAR CART BUTTON
               IconButton(
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text('Are you sure you want to clear the cart?'),
+                      title: const Text(
+                          'Are you sure you want to clear the cart?'),
                       actions: [
-                        // Cancel button
                         TextButton(
                           onPressed: () => Navigator.pop(context),
                           child: const Text("Cancel"),
                         ),
-                        // Yes button
                         TextButton(
                           onPressed: () {
-                            // Calling the clearCart method
                             restaurant.clearCart();
                             Navigator.pop(context);
                           },
@@ -48,40 +44,38 @@ class CartPage extends StatelessWidget {
                   );
                 },
                 icon: const Icon(Icons.delete),
-              )
+              ),
             ],
           ),
-          body: Expanded(
-            child: Column(
-              children: [
-                //list of cart
-
-                Expanded(
-                  child: Column(
-                    children: [
-                      userCart.isEmpty
-                          ? Center(child: const Text("Cart is empty..."))
-                          : Expanded(
-                              child: ListView.builder(
-                                  itemCount: userCart.length,
-                                  itemBuilder: (context, index) {
-                                    final cartItem = userCart[index];
-
-                                    return MyCartTile(cartItem: cartItem);
-                                  })),
-                    ],
+          body: Column(
+            children: [
+              Expanded(
+                child: userCart.isEmpty
+                    ? Center(
+                        child: Text(
+                          "Cart is empty...",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: userCart.length,
+                        itemBuilder: (context, index) {
+                          final cartItem = userCart[index];
+                          return MyCartTile(cartItem: cartItem);
+                        },
+                      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: MyButton(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PaymentPage()),
                   ),
-                ),
-                MyButton(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PaymentPage())),
                   text: "Go to CheckOut",
                 ),
-                const SizedBox(
-                  height: 25,
-                )
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

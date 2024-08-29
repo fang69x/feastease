@@ -57,27 +57,27 @@ class MyCartTile extends StatelessWidget {
                             fontSize: 14,
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        QuantitySelector(
+                          quantity: cartItem.quantity,
+                          food: cartItem.food,
+                          onIncreament: () {
+                            restaurant.addToCart(
+                              cartItem.food,
+                              cartItem.selectedAddons,
+                            );
+                          },
+                          onDecreament: () {
+                            restaurant.removeFromCart(cartItem);
+                          },
+                        ),
                       ],
                     ),
                   ),
 
                   // Quantity Selector
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: QuantitySelector(
-                      quantity: cartItem.quantity,
-                      food: cartItem.food,
-                      onIncreament: () {
-                        restaurant.addToCart(
-                          cartItem.food,
-                          cartItem.selectedAddons,
-                        );
-                      },
-                      onDecreament: () {
-                        restaurant.removeFromCart(cartItem);
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),
