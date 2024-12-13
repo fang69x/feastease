@@ -1,5 +1,4 @@
 import 'package:feastease/Model/Restaurant.dart';
-import 'package:feastease/services/auth/login_or_register.dart';
 import 'package:feastease/firebase_options.dart';
 import 'package:feastease/services/auth_gate.dart';
 import 'package:feastease/themes/theme_provider.dart';

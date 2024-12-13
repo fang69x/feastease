@@ -33,9 +33,9 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
         shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
       ),
       bottomNavigationBar: _buildBottomNavbar(context),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: const Column(
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 16),
