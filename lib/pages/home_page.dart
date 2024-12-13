@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:feastease/Model/Restaurant.dart';
 import 'package:feastease/Model/food.dart';
 import 'package:feastease/components/drawer.dart';
