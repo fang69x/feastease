@@ -16,15 +16,24 @@ class MySilverAppBar extends StatelessWidget {
       pinned: true,
       actions: [
         IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CartPage()));
-            },
-            icon: Icon(Icons.shopping_cart))
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const CartPage()));
+          },
+          icon: const Icon(
+            Icons.shopping_cart,
+            color: Colors.orange, // Orange shopping cart icon
+          ),
+        ),
       ],
-      backgroundColor: Theme.of(context).colorScheme.background,
-      foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: Text("Sunset Dinner"),
+      backgroundColor: Colors.black, // Black background
+      foregroundColor: Colors.orange, // Orange foreground for the title
+      title: const Text(
+        "Sunset Dinner",
+        style: TextStyle(
+          color: Colors.orange, // Orange title text
+        ),
+      ),
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
           padding: const EdgeInsets.only(bottom: 50.0),
@@ -32,7 +41,7 @@ class MySilverAppBar extends StatelessWidget {
         ),
         title: title,
         centerTitle: true,
-        titlePadding: EdgeInsets.only(left: 0, right: 0, top: 0),
+        titlePadding: const EdgeInsets.only(left: 0, right: 0, top: 0),
         expandedTitleScale: 1,
       ),
     );

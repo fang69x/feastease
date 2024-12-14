@@ -9,77 +9,79 @@ class FoodTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the theme's surface color for the background
     final theme = Theme.of(context);
-    final surfaceColor = theme.colorScheme.surface;
-    final primaryTextColor = theme.colorScheme.inversePrimary;
-    final secondaryTextColor = theme.colorScheme.primary;
+    final primaryTextColor = Colors.orange; // Orange for food name
+    final secondaryTextColor = Colors.white; // White for price
+    final descriptionColor = Colors.grey[600]; // Grey for description
 
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: surfaceColor,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20), // Softer rounded corners
+          side: BorderSide(color: Colors.orange, width: 2), // Orange border
         ),
-        child: Row(
-          children: [
-            // Text food details
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    food.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: primaryTextColor,
+        elevation: 8, // Slight shadow for depth
+        shadowColor: const Color.fromARGB(255, 96, 30, 5)
+            .withOpacity(0.2), // Subtle shadow color
+        color: const Color.fromARGB(
+            255, 40, 40, 40), // Black background for the card
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              // Food details
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      food.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: primaryTextColor, // Orange for food name
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    '\$${food.price.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: secondaryTextColor,
-                      fontSize: 16,
+                    const SizedBox(height: 8),
+                    Text(
+                      '\$${food.price.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        color: secondaryTextColor, // White for price
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    food.description,
-                    style: TextStyle(
-                      color: Colors.grey[600],
+                    const SizedBox(height: 8),
+                    Text(
+                      food.description,
+                      style: TextStyle(
+                        color: descriptionColor, // Grey for description
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(height: 10),
-                ],
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                height: 120,
-                width: 120,
-                child: Image.asset(
-                  food.imagePath,
-                  fit: BoxFit.cover,
+                    const SizedBox(height: 12),
+                  ],
                 ),
               ),
-            ),
-          ],
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.black
+                        .withOpacity(0.1), // Light background behind the image
+                  ),
+                  child: Image.asset(
+                    food.imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

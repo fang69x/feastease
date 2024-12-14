@@ -5,18 +5,20 @@ class MyDescriptionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // textStyle
+    // Define the text styles using the theme colors
     var myPrimaryTextStyle =
-        TextStyle(color: Theme.of(context).colorScheme.inversePrimary);
+        TextStyle(color: Colors.orange); // Primary text in orange
     var mySecondaryTextStyle =
-        TextStyle(color: Theme.of(context).colorScheme.primary);
+        TextStyle(color: Colors.white); // Secondary text in white
+
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.secondary),
+        color: Colors.black, // Black background for the container
+        border: Border.all(color: Colors.orange), // Orange border
         borderRadius: BorderRadius.circular(8),
       ),
       padding: const EdgeInsets.all(25),
-      margin: EdgeInsets.only(left: 25, right: 25, bottom: 25),
+      margin: const EdgeInsets.only(left: 25, right: 25, bottom: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -24,11 +26,11 @@ class MyDescriptionBox extends StatelessWidget {
             children: [
               Text(
                 '\$0.99',
-                style: myPrimaryTextStyle,
+                style: myPrimaryTextStyle, // Orange price text
               ),
               Text(
-                'Delievery Fee',
-                style: mySecondaryTextStyle,
+                'Delivery Fee',
+                style: mySecondaryTextStyle, // White label text
               ),
             ],
           ),
@@ -36,11 +38,11 @@ class MyDescriptionBox extends StatelessWidget {
             children: [
               Text(
                 "15-30 min",
-                style: myPrimaryTextStyle,
+                style: myPrimaryTextStyle, // Orange time text
               ),
               Text(
-                "Delivery Fee",
-                style: mySecondaryTextStyle,
+                "Delivery Time",
+                style: mySecondaryTextStyle, // White label text
               ),
             ],
           )
