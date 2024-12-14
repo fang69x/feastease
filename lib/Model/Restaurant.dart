@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
+  static final Restaurant _instance = Restaurant._internal();
+  Restaurant._internal();
+
+  factory Restaurant() {
+    return _instance;
+  }
   String _deliveryAddress = '99 Hollywood Blv';
   final List<Food> _menu = [
     // burgers
