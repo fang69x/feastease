@@ -13,7 +13,7 @@
 - **Cart Management**: Add, edit, and remove items from your cart, including customizable add-ons.
 - **Order Checkout**: View your order summary and proceed with checkout.
 - **Firebase Firestore**: Order receipts and cart data are securely stored in Firestore.
-- **Payment Integration (Upcoming)**: A secure payment gateway is under development for processing orders.
+- **Payment Integration (Upcoming)**: A secure payment gateway is under development for the orders.
 
 ## Getting Started
 
